@@ -1,17 +1,25 @@
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
-
+//Practica Numero 1 de Informática II
 int main()
 {
-    int select,a,b;
-    int result,o,p=1;
+    int select,a,b,j;
+    unsigned int d;
+    int result,o,p=1,k;
     double f;
-    double t,h,l;
+    double t,h;
+    string let,voc,i;
     char c,m;
+    float pi = 0;
     while (true){
-        cout << "Ingrese el numero del ejercicio a ejecutar: "<<endl;
+        cout << "Ingrese el numero del ejercicio a ejecutar (Cero para cerrar la ejecucion): "<<endl;
         cin >> select;
+        if (select==0) {cout << "Hasta la proxima."<<endl;
+            break;
+        }
+        // Digite el numero cero para finalizar la ejecución.
         switch (select) {
         case 1:
             cout << "Ingrese el numero A: "<<endl;
@@ -107,12 +115,16 @@ int main()
         case 10:
             cout <<"Ingrese un numero N: "<<endl;
             cin >>a;
+            b = a;
+            o = 1;
+            while (b<100){
+                b = b*o;
+                if (b >100) break;
+                cout <<"Multiplos del "<<a<<" menores que 100: "<<endl<<b<<endl;
+                o = o+1;
+                b = a;
 
-
-
-
-
-
+            }
             break;
         case 11:
             cout<<"Ingrese un numero: "<<endl;
@@ -212,11 +224,11 @@ int main()
                 }
                 if (a>=b) {
                     if (h>a && h>b){
-                    h = h;
+                    h = h+0;
                     }
                     else h = a;
                 }
-                if (h>b) h=h;
+                if (h>b) h=h+0;
                 b = a;
 
             }
@@ -239,7 +251,19 @@ int main()
                 cout<<a/result<<endl;
 
             break;
-case 19:
+        case 19:
+            cout << "Digite un numero: "<<endl;
+            cin >> a;
+            for (b = 2; b<a ; b++ ) {
+                if (a%b==0) {
+                    cout << "El numero no es primo"<<endl;
+                    break;
+
+                }
+                else cout << "El numero es primo"<<endl;
+                break;
+            }
+
             break;
         case 20:
             cout <<"Ingrese un numero N: "<<endl;
@@ -271,13 +295,463 @@ case 19:
                 c = toupper(c);
                 cout <<"Letra convertida: "<<c<<endl;
             }
+            break;
+        case 22:
+            cout<<"Digite la cantidad de segundos: "<<endl;
+            cin >>a;
+            b = a/3600;
+            a = a%3600;
+            select = a/60;
+            o = a%60;
+            cout <<b<<":"<<select<<":"<<o<<endl;
+
+            break;
+        case 23:
+            cout <<"Digite el numero A: "<<endl;
+            cin >>a;
+            cout <<"Digite el numero B: "<<endl;
+            cin >>b;
+            select = 1;
+            o = 2;
+            while (o<=a || o<=b) {
+                if (a%o==0 || b%o==0){
+                    select = select * o;
+                    if (a%o==0) a=a/o;
+                    if (b%o==0) b=b/o;
+
+                }
+                else{
+                    o = o+1;
+                }
+
+            }
+            cout << "El mcm es: "<<select<<endl;
+
+            break;
+
+        case 24:
+            cout <<"Ingrese un numero N: "<<endl; cin >>a;
+            for (short i=0;i<a ;i++ ) {
+                for (short j=0;j<a ;j++ ) {
+                    if (i==0 || j==0 || i==a-1 || j== a-1) cout<<"+";
+                    else cout << " ";
+                }
+                cout <<endl;
+
+            }
+            break;
+        case 25:
+            cout <<"Digite un numero N: "<<endl;
+            cin >>a;
+            b = 1;
+            select = abs(a);
+            while (select>=10){
+                select /= 10;
+                b += 1;
+            }
+            cout << "El numero "<<a<<" tiene "<<b<<" digito(s)."<<endl;
+
+            break;
+
+        case 26:
+            cout << "Digite los tres numeros para formar el triangulo: "<<endl;
+            cin >> a;
+            cin >> b;
+            cin >> select;
+            if (a==b && a==select) cout<<"Equilatero"<<endl;
+            else if (a==b && select<a*2) cout<<"Isoseles"<<endl;
+            else if (a==select && b<a*2) cout<<"Isoseles"<<endl;
+            else if (b==select && a<b*2) cout<<"Isoseles"<<endl;
+            else if (a!=b && b!=select && select!=a && a+b>select && select+b>a && select+a>b) cout <<"Escaleno"<<endl;
+            else {
+                cout <<"No se puede formar un triangulo"<<endl;
+            }
+
+
+            break;
+
+        case 27:
+            cout << "Numero: "<<endl;
+            cin >>a;
+            cout << "Signo de operacion (+,-,*,/): "<<endl;
+            cin >>let;
+            cout<<"Numero: "<<endl;
+            cin >>b;
+            if (let=="+") cout <<a<<"+"<<b<<" = "<<a+b<<endl;
+            else if (let=="-") cout <<a<<"-"<<b<<" = "<<a-b<<endl;
+            else if (let=="*") cout<<a<<"*"<<b<<" = "<<a*b<<endl;
+            else if (let=="/") cout<<a<<"/"<<b<<" = "<<a/b<<endl;
+            break;
+
+
+
+        case 28:
+            cout << "Ingresa el numero de elementos de la aproximacion: "<<endl;
+            cin >> a;
+            for (int i=1;i<=a;i++ ) {
+                pi +=((2*(i%2)-1)*1.0/(2*i-1));}
+                cout << "Pi= "<<4*pi<<endl;
+                return 0;
+
+
+            break;
+        case 29:
+            a = 27;
+            b = 46;
+            while (b!=a){
+                cout << "Use los simbolos <,>,= para acercarse al numero secreto A, su numero B es: "<<b<<endl;
+                cin >>let;
+                if (let=="<") b -= 1;
+                if (let==">") b += 1;
+                if (let == "=" && b!=a) cout<<"Fallaste, sigue intentando."<<endl;
+                cout << b <<endl;
+                if (b>27 && b<30) cout << "Estas cerca!, sigue intentando"<<endl;
+
+            }
+            if (b==a){
+            cout << "Felicidades!!, encontraste el numero."<<endl;}
+
+            break;
+        case 30:
+            a = rand() %100;
+            b = 101;
+            o = 1;
+
+            while (b!=a){
+                cout << "Ingrese un numero B: " <<endl;
+                cin >> b;
+                if (b<a) cout <<"El numero es menor"<<endl;
+                if (b>a) cout <<"El numero es mayor"<<endl;
+                o +=1;
+            }
+            cout << "Lo lograste, hiciste "<<o<<" intentos."<<endl;
+
+
+
+            break;
+        case 31:
+            cout << "Digite un caracter: "<<endl;
+            cin >>voc;
+            //voc = tolower(voc);
+            if (voc=="a" || voc=="e" || voc=="i" || voc=="o" || voc == "u"){
+                cout << voc<<" es una vocal."<<endl;
+                break;
+            }
+            if (voc=="b" || voc=="c" || voc=="d" || voc=="f" || voc=="g" || voc=="h" || voc=="j" || voc=="k" || voc=="m" || voc=="n" || voc=="l"
+                    || voc=="ñ" || voc=="p" || voc=="q" || voc=="r" || voc=="s" || voc=="t" || voc=="v" || voc=="w" || voc=="x" || voc=="y" || voc=="z" )
+                cout << voc <<" es una consonante"<<endl;
+            else cout << voc << " no es letra." <<endl;
+
+            break;
+        case 32:
+            cout << "Dinero ingresado: "<<endl;
+            cin >>a;
+            b = 0;
+            while (a>=50000){
+                b += 1;
+                a -= 50000;
+            }
+            cout << b<<" billetes de 50.000"<<endl;
+            b = 0;
+            while (a>=20000){
+                b += 1;
+                a -= 20000;
+
+            }
+            cout << b << " billetes de 20.000"<<endl;
+            b = 0;
+            while (a>=10000){
+                b += 1;
+                a -= 10000;
+
+
+            }
+            cout << b << " billetes de 10.000"<<endl;
+            b = 0;
+            while (a>= 5000){
+                b += 1;
+                a -= 5000;
+
+            }
+            cout << b << " billetes de 5.000"<<endl;
+            b = 0;
+            while (a>= 2000){
+                b += 1;
+                a -=2000;
+
+            }
+            cout << b << " billetes de 2.000"<<endl;
+            b = 0;
+            while (a>=1000){
+                b += 1;
+                a -=1000;
+
+            }
+            cout << b << " billetes de 1.000"<<endl;
+            b = 0;
+            while (a>=500){
+                b += 1;
+                a -= 500;
+
+            }
+            cout << b << " monedas de 500"<<endl;
+            b = 0;
+            while (a>=200){
+                b += 1;
+                a -=200;
+            }
+            cout << b << " monedas de 200"<<endl;
+            b = 0;
+            while (a>=100){
+                b += 1;
+                a -=100;
+            }
+            cout << b << " monedas de 100"<<endl;
+            b = 0;
+            while (a>= 50){
+                b += 1;
+                a -=50;
+            }
+            cout << b<< " monedas de 50"<<endl;
+            if (a<50){
+                cout << "Resto: "<<a<<endl;
+            }
+            break;
+        case 33:
+            cout << "Mes: "<<endl;
+            cin >>a;
+            if (a<=0 || a>=13){
+                cout <<"Ese mes no existe"<<endl;
+                break;
+               }
+            cout << "Dia: "<<endl;
+            cin >>b;
+            if (b<=0 || b>31){
+                cout << "A menos que el calendario se haya modificado, ese dia no existe."<<endl;
+                break;
+            }
+            if (a==2 && b==29){
+                cout << b<<"/"<<a<<" posible anio bisiesto."<<endl;
+            }
+            if (a==4 || a==6 || a==9 || a==11 || a==2){
+                if (b==31){ cout<<"Este dia no existe en este mes."<<endl;
+                    break;}
+                cout<<b<<"/"<<a<<" es una fecha correcta."<<endl;
+            }
+            else cout<<b<<"/"<<a<<" es una fecha correcta."<<endl;
+
+
+
+            break;
+        case 34:
+            cout << "Digite el numero entero completo 24hrs: "<<endl;
+            cin >>a;
+            if (a<0){
+                cout << "No hay horas negativas!"<<endl;
+                break;
+            }
+            o = a/100;
+            p = a%100;
+            if (p>=60){
+                cout <<"Minutos invalidos"<<endl;
+                break;
+            }
+            if (o>24){
+                cout <<"Hora invalida"<<endl;
+                break;
+            }
+            cout <<o<<":"<<p<<endl;
+            cout << "Digite el numero entero en horaminutos: "<<endl;
+            cin >>b;
+            if (b<0){
+                cout<<"No hay horas negativas!"<<endl;
+                break;
+            }
+            select = b/100;
+            h = b%100;
+            cout <<select<<":"<<h<<endl;
+            if (h>=60){
+                cout << "Minutos invalidos"<<endl;
+                break;
+            }
+            result = select+o;
+            if (result>24){
+                cout<<"La hora se pasa de 24hrs"<<endl;
+                break;
+            }
+            f = p+h;
+            if (f>60){
+                result = result+1;
+                f = f-60;
+            }
+            cout << "La suma de las horas ingresadas son: "<<result<<":"<<f<<endl;
+
+            break;
+        case 35:
+            cout << "Ingresa un numero N : ";
+                    cin >> a;
+                    while (a%2==0){
+                        cout <<"El numero es par, ingrese un numero impar."<<endl;
+                        cin >>a;
+                    }
+                    b = 2*a - 2;
+
+                    for (int i=0; i<a; i++)
+                    {
+                        for (int j=0; j<b; j++)
+                            cout <<" ";
+                        b = b - 1;
+
+                        for (int j=0; j<=i; j++ )
+                        {
+                            cout << " *";
+                        }
+                        cout << endl;
+                    }
+
+                    for (int i=a; i>=0; i--)
+                    {
+                        for (int j=b; j>0; j--)
+                            cout <<" ";
+                        b = b + 1;
+
+                        for (int j=i; j>=0; j-- )
+                        {
+                            cout << " *";
+                        }
+                        cout << endl;
+                    }
+
+
+            break;
+        case 36:
+            cout << "Digite un numero N: "<<endl;
+            cin >>d;
+            f = 0;
+
+            for (unsigned int i=0;i<d ;i++ ) {
+
 
 
             }
 
+
+            break;
+        case 37:
+            cout << "Ingrese un numero N: "<<endl;
+            cin >> a;
+            b = 0;
+            o = 1;
+            p = 0;
+            for (int i=0;i<a ;i++ ) {
+                select = o;//8
+                o = o+b;//13
+                b = select;//8
+                if (o<=a){
+                    if (o%2==0){
+                       cout << o << endl;
+                       p += o;
+
+                }
+
+
+
+}
+
+
             }
+            cout << "El resultado de la suma es: "<<p<<endl;
 
 
+            break;
+        case 38:
+            cout << "Numero a: "<<endl;
+            cin >>a;
+            cout << "Numero b: "<<endl;
+            cin >>b;
+            cout << "Numero c: "<<endl;
+            cin >>o;
+            j = 1;
+            select = 0;
+            p = 0;
+            result = 0;
+            k = 0;
+            while (select<o && p<=o){
+                select = j*a;
+                p = j*b;
+                if (select>o) break;
+                j = j+1;
+                cout << select<<"+";
+                if (p<o){
+                cout << p<<"+";
+                k +=p;
+                }
+                result += select;
+
+
+            }
+            cout << "="<<k+result<<endl;
+
+
+
+
+            break;
+        case 39:
+            cout  << "Digite un numero N: "<<endl;
+            cin >>a;
+            h = a;
+            b = 10;
+            while (h>=0){
+                h = a%b;
+                b *= 10;
+                cout << h << endl;
+                h = h/b;
+
+            }
+            break;
+        case 40:
+            cout <<"Digite el numero A: "<<endl;
+            cin >>a;
+            select = 1;
+            o = 2;
+            b = 1;
+            while (o<=a || o<=b) {
+                if (a%o==0 || b%o==0){
+                    select = select * o;
+                    if (a%o==0) a=a/o;
+                    if (b%o==0) b=b/o;
+
+                }
+                else{
+                    o = o+1;
+                }
+            b +=1;
+            }
+            cout << "El mcm es: "<<select<<endl;
+            break;
+        case 41:
+            break;
+        case 42:
+            break;
+        case 43:
+            cout << "Digite un numero: "<<endl;
+            cin >> a;
+            b = 2;
+            while (b<a){
+                if (!(a%b==0)){
+                    result = a%b;
+                    o += result;
+                    b +=b;
+                }
+
+
+            }
+            cout << o << endl;
+
+    }
+
+
+}
 
         }
 
