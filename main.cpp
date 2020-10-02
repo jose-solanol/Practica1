@@ -3,8 +3,21 @@
 
 using namespace std;
 //Practica Numero 1 de Informática II
+int factorial(int v){
+    int fact = v;
+    if (fact>1){
+        fact = v*factorial(v-1);
+        return fact;
+    }
+    else{
+        return 1;
+    }
+}
+
+
 int main()
 {
+    bool primo;
     int select,a,b,j;
     unsigned int d;
     int result,o,p=1,k;
@@ -254,15 +267,17 @@ int main()
         case 19:
             cout << "Digite un numero: "<<endl;
             cin >> a;
-            for (b = 2; b<a ; b++ ) {
-                if (a%b==0) {
-                    cout << "El numero no es primo"<<endl;
-                    break;
+            primo = true;
+            for (b = 2; b<a && primo==true ; b++ ) {
+                if (a%b==0) {                    
+                    primo = false;
 
                 }
-                else cout << "El numero es primo"<<endl;
-                break;
             }
+            if (primo==false){ cout << "El numero no es primo"<<endl;
+            }
+            else cout << "El numero es primo"<<endl;
+
 
             break;
         case 20:
@@ -630,10 +645,11 @@ int main()
             f = 0;
 
             for (unsigned int i=0;i<d ;i++ ) {
-
-
+                double t = factorial(i);
+                f+=1/t;
 
             }
+            cout << "El valor aproximado de e en base al numero "<<d<< " es: "<< f<<endl;
 
 
             break;
@@ -710,6 +726,9 @@ int main()
             }
             break;
         case 40:
+
+            break;
+        case 41:
             cout <<"Digite el numero A: "<<endl;
             cin >>a;
             select = 1;
@@ -729,24 +748,56 @@ int main()
             }
             cout << "El mcm es: "<<select<<endl;
             break;
-        case 41:
-            break;
         case 42:
             break;
         case 43:
             cout << "Digite un numero: "<<endl;
             cin >> a;
-            b = 2;
-            while (b<a){
-                if (!(a%b==0)){
-                    result = a%b;
-                    o += result;
-                    b +=b;
+            primo = true;
+            b = 0;
+            for (int i = 2;i<a && primo==true ;i++ ) {
+                if (i%2==0){
+                    primo = false;}
+                else{
+                    b += i;
+                    cout << i << endl;
+                    primo = true;
                 }
 
 
             }
-            cout << o << endl;
+            cout << "El resultado de la suma es: "<<b<<endl;
+            break;
+        case 46:
+            cout << "Digite el numero N: "<<endl;
+            cin >> a;
+            b = a;//13
+            if (b>1){
+                cout << b << endl;
+                if (!(b%2==0)) b = (b*3)+1;
+                while (b%2==0){
+                    cout << b <<endl;
+                    b /= 2;
+                    if (b==1) break;
+                    if (b%2!=0){
+                        b = (3*b)+1;
+                        cout << b<<endl;
+                    }
+                    if (b==1) break;
+                }
+                cout << b<<endl;
+            }
+            else cout << "1 es 1 "<<endl;
+
+
+            break;
+        case 47:
+            cout << "Digite un numero N: "<<endl;
+            cin >>a;
+            b = (a*(a+1))/2; // enesimo numero triangular.
+            cout << b << endl;
+
+            break;
 
     }
 
@@ -754,4 +805,5 @@ int main()
 }
 
         }
+
 
